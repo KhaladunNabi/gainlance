@@ -1,9 +1,9 @@
 //gainlance/lib/site.ts
 export const SITE_CONFIG = {
   name: 'GainLance',
-  tagline: 'Expert Reviews for Smart Shoppers',
+  tagline: 'Testing and comparative reviews of essential home and office desk equipment',
   description:
-    'In-depth, hands-on reviews of the latest tech products. We test everything from home to office so you can buy with confidence.',
+    'GainLance tests and compares essential home office desk equipment so you can confidently purchase the right setup or product.',
   url: 'https://gainlance.com',
   icon: '/gainlance-icon.jpg',
   twitter: '@khaladunnabi',
