@@ -140,11 +140,11 @@ export default async function HomePage() {
           <div className="rounded-2xl border border-border bg-gradient-to-r from-primary/5 to-accent/5 p-8 lg:p-12">
             <div className="grid sm:grid-cols-3 gap-8 text-center">
               <div>
-                <p className="font-heading text-3xl font-bold text-primary">100+</p>
+                <p className="font-heading text-3xl font-bold text-primary">20+</p>
                 <p className="text-sm text-muted-foreground mt-1">Products Tested</p>
               </div>
               <div>
-                <p className="font-heading text-3xl font-bold text-primary">50K+</p>
+                <p className="font-heading text-3xl font-bold text-primary">1K+</p>
                 <p className="text-sm text-muted-foreground mt-1">Monthly Readers</p>
               </div>
               <div>
