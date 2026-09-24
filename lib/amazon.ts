@@ -1,11 +1,3 @@
-// import {SITE_CONFIG} from './site';
-
-// export function getAmazonAffiliateTag(asin: string): string {
-//   const {affiliateTag} = SITE_CONFIG.amazon;
-//   const {defaultDomain} = SITE_CONFIG;
-//   return `https://www.${defaultDomain}/dp/${asin}?tag=${affiliateTag}`;
-// }
-
 import {SITE_CONFIG} from './site';
 
 export function getAmazonAffiliateTag(input: string): string {
@@ -21,4 +13,7 @@ export function getAmazonAffiliateTag(input: string): string {
       return `https://www.${defaultDomain}/dp/${input}?tag=${affiliateTag}`;
     }
   }
+
+  // input যদি 'http' দিয়ে শুরু না হয় (যেমন শুধু ASIN কোড হয়), তখন এই লাইনটা চলবে
+  return `https://www.${defaultDomain}/dp/${input}?tag=${affiliateTag}`;
 }
