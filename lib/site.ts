@@ -12,7 +12,7 @@ export const SITE_CONFIG = {
   amazon: {
     affiliateTag: process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || 'gainlance-20',
   },
-  defaultDomain: 'gainlance.com',
+  defaultDomain: 'amazon.com',
 };
 
 export function formatDate(dateString: string): string {

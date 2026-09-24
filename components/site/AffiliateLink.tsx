@@ -4,17 +4,19 @@ import {getAmazonAffiliateTag} from '@/lib/amazon';
 
 interface AffiliateLinkProps {
   asin: string;
+  href?: string;
   children: React.ReactNode;
   className?: string;
   size?: 'default' | 'lg';
 }
 
-export function AffiliateLink({ asin, children, className, size = 'default' }: AffiliateLinkProps) {
-  const href = getAmazonAffiliateTag(asin);
+export function AffiliateLink({ asin, href, children, className, size = 'default' }: AffiliateLinkProps) {
+  // const href = hrefProp ??  (asin ? getAmazonAffiliateTag(asin) : '#');
+  const heref = href ?? (asin ? getAmazonAffiliateTag(asin) : '#');
 
   return (
     <a
-      href={href}
+      href={heref}
       rel="nofollow sponsored noopener noreferrer"
       target="_blank"
       className={cn(
