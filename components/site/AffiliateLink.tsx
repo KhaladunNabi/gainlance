@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import {getAmazonAffiliateTag} from '@/lib/amazon';
 
 interface AffiliateLinkProps {
-  asin: string;
+  asin?: string;
   href?: string;
   children: React.ReactNode;
   className?: string;
