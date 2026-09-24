@@ -1,14 +1,17 @@
 import { ShoppingBag, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import {getAmazonAffiliateTag} from '@/lib/amazon';
 
 interface AffiliateLinkProps {
-  href: string;
+  asin: string;
   children: React.ReactNode;
   className?: string;
   size?: 'default' | 'lg';
 }
 
-export function AffiliateLink({ href, children, className, size = 'default' }: AffiliateLinkProps) {
+export function AffiliateLink({ asin, children, className, size = 'default' }: AffiliateLinkProps) {
+  const href = getAmazonAffiliateTag(asin);
+
   return (
     <a
       href={href}

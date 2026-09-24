@@ -8,7 +8,11 @@ export const SITE_CONFIG = {
   icon: '/gainlance-icon.jpg',
   twitter: '@khaladunnabi',
   author: 'Md Khaladunnabi',
-  amazonAffiliateTag: 'tag=gainlance-20',
+  // amazonAffiliateTag: 'gainlance-20',
+  amazon: {
+    affiliateTag: process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || 'gainlance-20',
+  },
+  defaultDomain: 'gainlance.com',
 };
 
 export function formatDate(dateString: string): string {

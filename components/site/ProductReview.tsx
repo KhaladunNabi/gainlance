@@ -60,7 +60,7 @@ export function ProductReview({ post }: { post: Post }) {
 
           {post.amazon_url && (
             <div className="mt-4">
-              <AffiliateLink href={post.amazon_url} size="lg">
+              <AffiliateLink asin={post.amazon_url} size="lg">
                 Check Price on Amazon
               </AffiliateLink>
             </div>
