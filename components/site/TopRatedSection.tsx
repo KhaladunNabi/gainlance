@@ -95,7 +95,7 @@ export function TopRatedSection({ posts }: { posts: PostWithCategory[] }) {
                     </div>
                   )}
                   {post.amazon_url ? (
-                    <AffiliateLink asin={post.amazon_url} className="text-xs px-3 py-2">
+                    <AffiliateLink href={post.amazon_url} className="text-xs px-3 py-2">
                       Buy
                     </AffiliateLink>
                   ) : (

@@ -14,6 +14,6 @@ export function getAmazonAffiliateTag(input: string): string {
     }
   }
 
-  // input যদি 'http' দিয়ে শুরু না হয় (যেমন শুধু ASIN কোড হয়), তখন এই লাইনটা চলবে
+  // input if 'http' is not a valid URL, treat it as an ASIN
   return `https://www.${defaultDomain}/dp/${input}?tag=${affiliateTag}`;
 }
