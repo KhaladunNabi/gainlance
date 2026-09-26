@@ -46,7 +46,7 @@ export function TopRatedSection({ posts }: { posts: PostWithCategory[] }) {
                     alt={post.product_image_alt || post.featured_image_alt || post.title}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-contain transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute top-3 left-3 flex items-center gap-2">
                     <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-foreground/80 backdrop-blur text-white text-xs font-bold">

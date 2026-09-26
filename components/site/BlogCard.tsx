@@ -22,7 +22,7 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
             alt={post.featured_image_alt || post.title}
             fill
             sizes={featured ? '(max-width: 1024px) 100vw, 66vw' : '(max-width: 768px) 100vw, 33vw'}
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-contain transition-transform duration-500 group-hover:scale-105"
             priority={featured}
           />
           <div className="absolute top-3 left-3 flex items-center gap-2">

@@ -37,7 +37,7 @@ export function HeroCarousel({ posts }: { posts: PostWithCategory[] }) {
                   alt={post.featured_image_alt || post.title}
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-contain transition-transform duration-700 group-hover:scale-105"
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
@@ -51,7 +51,7 @@ export function HeroCarousel({ posts }: { posts: PostWithCategory[] }) {
                     </span>
                   )}
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
+                <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent-80">
                   {post.rating > 0 && (
                     <div className="flex items-center gap-2 mb-2">
                       <StarRating rating={post.rating} size={16} />
