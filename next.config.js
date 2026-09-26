@@ -7,11 +7,13 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
+        hostname: 'm.media-amazon.com',
+        pathname: '/images/**',
       },
       {
         protocol: 'https',
         hostname: 'i.pravatar.cc',
+        pathname: '/storage/v1/object/public/**',
       },
     ],
   },
