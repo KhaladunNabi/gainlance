@@ -1,3 +1,4 @@
+// components/site/JsonLd.tsx
 import { SITE_CONFIG } from '@/lib/site';
 import type { Post, PostWithCategory } from '@/lib/types';
 
@@ -28,6 +29,37 @@ export function WebsiteJsonLd() {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }
 
+// export function ReviewJsonLd({ post }: { post: PostWithCategory }) {
+//   if (!post.product_name) return null;
+
+//   const data = {
+//     '@context': 'https://schema.org',
+//     '@type': 'Review',
+//     itemReviewed: {
+//       '@type': 'Product',
+//       name: post.product_name,
+//       ...(post.product_image ? { image: post.product_image } : {}),
+//     },
+//     reviewRating: {
+//       '@type': 'Rating',
+//       ratingValue: post.rating,
+//       bestRating: 5,
+//       worstRating: 0,
+//     },
+//     author: {
+//       '@type': 'Person',
+//       name: post.author_name,
+//     },
+//     publisher: {
+//       '@type': 'Organization',
+//       name: SITE_CONFIG.name,
+//     },
+//     datePublished: post.published_at,
+//     ...(post.verdict ? { reviewBody: post.verdict } : {}),
+//   };
+//   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
+// }
+
 export function ReviewJsonLd({ post }: { post: PostWithCategory }) {
   if (!post.product_name) return null;
 
@@ -38,6 +70,17 @@ export function ReviewJsonLd({ post }: { post: PostWithCategory }) {
       '@type': 'Product',
       name: post.product_name,
       ...(post.product_image ? { image: post.product_image } : {}),
+      ...(post.rating
+        ? {
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: post.rating,
+              bestRating: 5,
+              worstRating: 0,
+              ratingCount: 1,
+            },
+          }
+        : {}),
     },
     reviewRating: {
       '@type': 'Rating',

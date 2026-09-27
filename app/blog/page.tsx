@@ -8,6 +8,9 @@ import { getCategories, getPosts } from '@/lib/data';
 import { SITE_CONFIG } from '@/lib/site';
 import { SearchX } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: 'All Product Reviews',
   description:

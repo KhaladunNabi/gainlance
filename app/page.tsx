@@ -11,6 +11,7 @@ import { getCategories, getFeaturedPosts, getPosts, getTopRatedPosts } from '@/l
 import { SITE_CONFIG } from '@/lib/site';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function HomePage() {
   const [categories, featuredPosts, allPosts, topRatedPosts] = await Promise.all([
