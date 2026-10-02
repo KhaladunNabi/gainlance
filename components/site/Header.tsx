@@ -26,14 +26,19 @@ export function Header({ categories, posts }: HeaderProps) {
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground font-heading font-bold text-lg">
-              G
-            </div>
-            <span className="font-heading text-xl font-bold tracking-tight hidden sm:block">
-              GainLance
-            </span>
-          </Link>
+
+          <Link href="/" className="flex shrink-0 items-center gap-2">
+    <img
+    src="/favicon.ico"
+    alt="GainLance logo"
+    width={40}
+    height={40}
+    className="h-10 w-10 rounded-full object-cover"
+   />
+      <span className="hidden font-heading text-xl font-bold tracking-tight sm:block">
+        GainLance
+       </span>
+            </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
             <Link
@@ -121,5 +126,6 @@ export function Header({ categories, posts }: HeaderProps) {
         </div>
       </div>
     </header>
+    
   );
 }

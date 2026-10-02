@@ -154,36 +154,60 @@ export default async function AboutPage() {
           </section>
 
           <section className="my-12">
-            <h2 className="font-heading text-2xl font-bold tracking-tight mb-4">Our Team</h2>
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-5">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary font-heading font-bold text-lg shrink-0">
-                  MC
-                </div>
-                <div>
-                  <h3 className="font-semibold">Marcus Chen</h3>
-                  <p className="text-xs text-primary font-medium mt-0.5">Senior Editor, Audio & Drones</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    10 years of experience reviewing consumer electronics. Former audio engineer
-                    with a passion for sound quality.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-5">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary font-heading font-bold text-lg shrink-0">
-                  SK
-                </div>
-                <div>
-                  <h3 className="font-semibold">Sarah Kim</h3>
-                  <p className="text-xs text-primary font-medium mt-0.5">Editor, Wearables & Gaming</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Tech journalist with 7 years covering smartwatches, gaming peripherals, and
-                    mobile accessories.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
+  <h2 className="font-heading text-2xl font-bold tracking-tight mb-4">Our Team</h2>
+  <div className="grid sm:grid-cols-2 gap-6">
+    {/* Member 1 */}
+    <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-5">
+      <img
+        src="https://gxqcukmyejzykwplipoo.supabase.co/storage/v1/object/public/image/auth.jpg"
+        alt="Khaladun Nabi"
+        width={56}
+        height={56}
+        loading="lazy"
+        className="h-14 w-14 shrink-0 rounded-full object-cover bg-primary/10"
+      />
+      <div>
+        <h3 className="font-semibold">Khaladun Nabi</h3>
+        <p className="text-xs text-primary font-medium mt-0.5">
+          Founder & Lead Product Reviewer | Gainlance
+        </p>
+        <p className="text-sm text-muted-foreground hover:underline">
+          Gmail: khaladunnabi@gmail.com
+        </p>
+        <p className="text-sm text-muted-foreground mt-2">
+          5 years of experience reviewing products. Search engine optimization expert.
+          Expert about helping consumers make informed decisions.
+        </p>
+      </div>
+    </div>
+
+    {/* Member 2 */}
+    <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-5">
+      <img
+        src="https://gxqcukmyejzykwplipoo.supabase.co/storage/v1/object/public/image/Shila_Avator.jpeg"
+        alt="Shirin Shila"
+        width={56}
+        height={56}
+        loading="lazy"
+        className="h-14 w-14 shrink-0 rounded-full object-cover bg-primary/10"
+      />
+      <div>
+        <h3 className="font-semibold">Shirin Shila</h3>
+        <p className="text-xs text-primary font-medium mt-0.5">
+          Lead Product Reviewer | Gainlance
+        </p>
+        <p className="text-sm text-muted-foreground hover:underline">
+          Gmail: shirinshila9025@gmail.com
+        </p>
+        <p className="text-sm text-muted-foreground mt-2">
+          Home office desk products analyst with 4 years of experience in reviewing
+          office supplies and home office products. She has a keen eye for detail and
+          is an expert at helping consumers make informed decisions.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
         </div>
       </main>
 

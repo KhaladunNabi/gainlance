@@ -16,12 +16,18 @@ export function Footer({ categories }: FooterProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-heading font-bold">
-                G
-              </div>
-              <span className="font-heading text-lg font-bold">{SITE_CONFIG.name}</span>
-            </div>
+            <Link href="/" className="group flex shrink-0 items-center gap-2">
+    <img
+    src="/favicon.ico"
+    alt=""
+    width={28}
+    height={28}
+    className="h-7 w-7 object-contain"
+    />
+    <span className="font-heading text-lg font-bold text-foreground transition-colors group-hover:text-primary">
+    {SITE_CONFIG.name}
+    </span>
+            </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               {SITE_CONFIG.description}
             </p>

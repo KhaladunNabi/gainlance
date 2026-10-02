@@ -9,6 +9,7 @@ import { TopRatedSection } from '@/components/site/TopRatedSection';
 import { OrganizationJsonLd, WebsiteJsonLd } from '@/components/site/JsonLd';
 import { getCategories, getFeaturedPosts, getPosts, getTopRatedPosts } from '@/lib/data';
 import { SITE_CONFIG } from '@/lib/site';
+// import { CategoryNav } from '@/components/site/CategoryNav';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -34,6 +35,7 @@ export default async function HomePage() {
       <OrganizationJsonLd />
       <WebsiteJsonLd />
       <Header categories={categories} posts={recentPosts} />
+      {/* <CategoryNav categories={categories} /> */}
 
       <main className="flex-1">
         {/* Hero */}
