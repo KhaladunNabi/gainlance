@@ -1,14 +1,13 @@
 //gainlance/lib/site.ts
 export const SITE_CONFIG = {
-  name: 'GainLance',
+  name: process.env.NEXT_PUBLIC_SITE_NAME ?? 'GainLance',
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://gainlance.com').replace(/\/$/, ''),
   tagline: 'Testing and comparative reviews of essential home and office desk equipment.',
   description:
     'GainLance tests and compares essential home office desk equipment so you can confidently purchase the right setup or product.',
-  url: 'https://gainlance.com',
-  icon: '/gainlance-icon.jpg',
-  twitter: '@khaladunnabi',
-  author: 'Md Khaladunnabi',
-  // amazonAffiliateTag: 'gainlance-20',
+  icon: process.env.NEXT_PUBLIC_SITE_ICON || '/gainlance-icon.jpg',
+  twitter: process.env.NEXT_PUBLIC_TWITTER_HANDLE || '@khaladunnabi',
+  author: process.env.NEXT_PUBLIC_SITE_AUTHOR || 'Md Khaladunnabi',
   amazon: {
     affiliateTag: process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || 'gainlance-20',
   },
