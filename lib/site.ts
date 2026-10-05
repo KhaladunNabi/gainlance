@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Testing and comparative reviews of essential home and office desk equipment.',
   description:
     'GainLance tests and compares essential home office desk equipment so you can confidently purchase the right setup or product.',
-  icon: process.env.NEXT_PUBLIC_SITE_ICON || '/gainlanceLogo.png',
+  icon: process.env.NEXT_PUBLIC_SITE_ICON || '/gainlance-icon.png',
   twitter: process.env.NEXT_PUBLIC_TWITTER_HANDLE || '@khaladunnabi',
   author: process.env.NEXT_PUBLIC_SITE_AUTHOR || 'Md Khaladunnabi',
   amazon: {
