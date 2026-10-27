@@ -46,7 +46,7 @@ export default async function HomePage() {
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary mb-6">
                   <TrendingUp className="h-4 w-4" />
-                  Trusted by 50,000+ readers
+                  Trusted by 5000+ readers
                 </span>
                 <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance mb-6">
                   We Test Tech So{' '}
@@ -143,7 +143,7 @@ export default async function HomePage() {
           <div className="rounded-2xl border border-border bg-gradient-to-r from-primary/5 to-accent/5 p-8 lg:p-12">
             <div className="grid sm:grid-cols-3 gap-8 text-center">
               <div>
-                <p className="font-heading text-3xl font-bold text-primary">20+</p>
+                <p className="font-heading text-3xl font-bold text-primary">33+</p>
                 <p className="text-sm text-muted-foreground mt-1">Products Tested</p>
               </div>
               <div>
