@@ -17,7 +17,7 @@ import { SITE_CONFIG } from '@/lib/site';
 export const dynamic = 'force-dynamic';
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export const revalidate = 3600;
@@ -28,7 +28,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const category = await getCategoryBySlug(params.slug);
+  const { slug } = await params;
+  const category = await getCategoryBySlug(slug);
   if (!category) return {};
 
   const title = `${category.name} Reviews`;
@@ -60,7 +61,7 @@ export default async function CategoryPage({ params }: PageProps) {
   const [categories, allPosts, category] = await Promise.all([
     getCategories(),
     getPosts(),
-    getCategoryBySlug(params.slug),
+    getCategoryBySlug((await params).slug),
   ]);
 
   if (!category) notFound();

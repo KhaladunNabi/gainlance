@@ -1,3 +1,4 @@
+//blog/[slug]/page.tsx
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -27,7 +28,7 @@ import { SITE_CONFIG, formatDate } from '@/lib/site';
 export const dynamic = 'force-dynamic';
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export const revalidate = 60;
@@ -38,7 +39,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
   if (!post) return {};
 
   const title = post.meta_title || post.title;
@@ -83,7 +85,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   const [categories, posts, post] = await Promise.all([
     getCategories(),
     getPosts(),
-    getPostBySlug(params.slug),
+    getPostBySlug((await params).slug),
   ]);
 
   if (!post) notFound();
