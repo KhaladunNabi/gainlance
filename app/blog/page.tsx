@@ -159,14 +159,14 @@ export const metadata: Metadata = {
 
 
 interface BlogPageProps {
-  searchParams: { q?: string; page?: string };
+  searchParams: Promise<{ q?: string; page?: string }>;
 }
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const categories = await getCategories();
   const allPosts = await getPosts();
 
-  const query = searchParams.q?.trim() || '';
+  const query = (await searchParams).q?.trim() || '';
 
   // 1. Filter
   const filteredPosts = query
@@ -181,7 +181,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   // 2. Work out the page (clamped to a valid range)
   const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
-  const requestedPage = parseInt(searchParams.page ?? '1', 10);
+  const requestedPage = parseInt((await searchParams).page ?? '1', 10);
   const currentPage = Number.isNaN(requestedPage)
     ? 1
     : Math.min(Math.max(requestedPage, 1), totalPages);
