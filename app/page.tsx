@@ -44,7 +44,7 @@ export default async function HomePage() {
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary mb-6">
                   <TrendingUp className="h-4 w-4" />
-                  Trusted by 1200+ readers
+                  Trusted by 1000+ readers
                 </span>
                 <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance mb-6">
                   We Test Tech So{' '}
@@ -72,7 +72,7 @@ export default async function HomePage() {
                 <div className="flex items-center gap-6 mt-10">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="h-5 w-5 text-primary" />
-                    <span className="text-sm text-muted-foreground">Independent, hands-on reviews</span>
+                    <span className="text-sm text-muted-foreground">Independent testing</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <ThumbsUp className="h-5 w-5 text-primary" />
