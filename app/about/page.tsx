@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { Header } from '@/components/site/Header';
-import { Footer } from '@/components/site/Footer';
+// import { Header } from '@/components/site/Header';
+// import { Footer } from '@/components/site/Footer';
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { OrganizationJsonLd } from '@/components/site/JsonLd';
 import { getCategories, getPosts } from '@/lib/data';
@@ -10,7 +10,7 @@ import { ShieldCheck, Microscope, Users, Heart } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'About Us',
   description:
-    'Learn about GearGuru — our testing methodology, our team, and our commitment to honest, independent product reviews.',
+    'Learn about GainLance — our testing methodology, our team, and our commitment to honest, independent product reviews.',
   alternates: {
     canonical: '/about',
   },
@@ -30,7 +30,7 @@ export default async function AboutPage() {
       icon: Microscope,
       title: 'Rigorous Testing',
       description:
-        'Every product goes through weeks of real-world testing. We do not rely on spec sheets — we use the products in our daily lives before forming our opinions.',
+        'We use products in real situations before forming an opinion. Testing time varies by product, and we note how long we used each one in the review.',
     },
     {
       icon: ShieldCheck,
@@ -48,14 +48,14 @@ export default async function AboutPage() {
       icon: Heart,
       title: 'Passion for Tech',
       description:
-        'We are genuine technology enthusiasts who love testing gadgets. Our team has decades of combined experience in consumer electronics.',
+        'We are genuine technology enthusiasts who love testing gadgets. Our team brings nearly a decade of combined experience reviewing consumer products.',
     },
   ];
 
   return (
     <>
       <OrganizationJsonLd />
-      <Header categories={categories} posts={posts} />
+      {/* <Header categories={categories} posts={posts} /> */}
 
       <main className="flex-1">
         <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-8">
@@ -115,8 +115,7 @@ export default async function AboutPage() {
                 </li>
                 <li>
                   <strong className="text-foreground">Real-World Testing</strong> — We use the
-                  product as a typical consumer would for a minimum of 2 weeks across multiple
-                  scenarios.
+                  We use the product as a typical consumer would, across multiple scenarios. Most products are tested for two weeks or more.
                 </li>
                 <li>
                   <strong className="text-foreground">Benchmark Comparison</strong> — Where
@@ -211,7 +210,7 @@ export default async function AboutPage() {
         </div>
       </main>
 
-      <Footer categories={categories} />
+      {/* <Footer categories={categories} /> */}
     </>
   );
 }

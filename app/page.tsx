@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, TrendingUp, ShieldCheck, ThumbsUp } from 'lucide-react';
-import { Header } from '@/components/site/Header';
-import { Footer } from '@/components/site/Footer';
+// import { Header } from '@/components/site/Header';
+// import { Footer } from '@/components/site/Footer';
 import { BlogCard } from '@/components/site/BlogCard';
 import { CategoryCard } from '@/components/site/CategoryCard';
 import { HeroCarousel } from '@/components/site/HeroCarousel';
@@ -9,7 +9,6 @@ import { TopRatedSection } from '@/components/site/TopRatedSection';
 import { OrganizationJsonLd, WebsiteJsonLd } from '@/components/site/JsonLd';
 import { getCategories, getFeaturedPosts, getPosts, getTopRatedPosts } from '@/lib/data';
 import { SITE_CONFIG } from '@/lib/site';
-// import { CategoryNav } from '@/components/site/CategoryNav';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -34,8 +33,7 @@ export default async function HomePage() {
     <>
       <OrganizationJsonLd />
       <WebsiteJsonLd />
-      <Header categories={categories} posts={recentPosts} />
-      {/* <CategoryNav categories={categories} /> */}
+      {/* <Header categories={categories} posts={recentPosts} /> */}
 
       <main className="flex-1">
         {/* Hero */}
@@ -46,14 +44,14 @@ export default async function HomePage() {
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary mb-6">
                   <TrendingUp className="h-4 w-4" />
-                  Trusted by 5000+ readers
+                  Trusted by 1200+ readers
                 </span>
                 <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance mb-6">
                   We Test Tech So{' '}
                   <span className="text-primary">You Don&apos;t Have To</span>
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl">
-                  {SITE_CONFIG.description} Every product is tested for weeks before we publish our verdict.
+                  {SITE_CONFIG.description} Our reviews are based on hands-on use, not spec sheets. 
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Link
@@ -74,7 +72,7 @@ export default async function HomePage() {
                 <div className="flex items-center gap-6 mt-10">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="h-5 w-5 text-primary" />
-                    <span className="text-sm text-muted-foreground">Independent testing</span>
+                    <span className="text-sm text-muted-foreground">Independent, hands-on reviews</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <ThumbsUp className="h-5 w-5 text-primary" />
@@ -152,14 +150,14 @@ export default async function HomePage() {
               </div>
               <div>
                 <p className="font-heading text-3xl font-bold text-primary">4.8/5</p>
-                <p className="text-sm text-muted-foreground mt-1">Reader Trust Score</p>
+                <p className="text-sm text-muted-foreground mt-1">Weekly Reader Satisfaction</p>
               </div>
             </div>
           </div>
         </section>
       </main>
 
-      <Footer categories={categories} />
+      {/* <Footer categories={categories} /> */}
     </>
   );
 }

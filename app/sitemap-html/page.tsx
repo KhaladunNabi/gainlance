@@ -1,8 +1,8 @@
 //app/sitemap-html/page.tsx
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Header } from '@/components/site/Header';
-import { Footer } from '@/components/site/Footer';
+// import { Header } from '@/components/site/Header';
+// import { Footer } from '@/components/site/Footer';
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { getCategories, getPosts } from '@/lib/data';
 import { SITE_CONFIG, formatDate } from '@/lib/site';
@@ -34,7 +34,7 @@ export default async function HtmlSitemapPage() {
 
   return (
     <>
-      <Header categories={categories} posts={posts} />
+      {/* <Header categories={categories} posts={posts} /> */}
       <main className="flex-1">
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8">
           <Breadcrumbs
@@ -125,7 +125,7 @@ export default async function HtmlSitemapPage() {
           )}
         </div>
       </main>
-      <Footer categories={categories} />
+      {/* <Footer categories={categories} /> */}
     </>
   );
 }

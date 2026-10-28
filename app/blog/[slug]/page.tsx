@@ -4,8 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Clock, Calendar, ArrowLeft, Tag } from 'lucide-react';
-import { Header } from '@/components/site/Header';
-import { Footer } from '@/components/site/Footer';
+// import { Header } from '@/components/site/Header';
+// import { Footer } from '@/components/site/Footer';
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { ArticleContent } from '@/components/site/ArticleContent';
 import { ProductReview } from '@/components/site/ProductReview';
@@ -103,7 +103,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     <>
       <ReviewJsonLd post={post} />
       <BreadcrumbJsonLd items={breadcrumbItems} />
-      <Header categories={categories} posts={posts} />
+      {/* <Header categories={categories} posts={posts} /> */}
 
       <main className="flex-1">
         {/* Hero */}
@@ -247,7 +247,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         )}
       </main>
 
-      <Footer categories={categories} />
+      {/* <Footer categories={categories} /> */}
     </>
   );
 }

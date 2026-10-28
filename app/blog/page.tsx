@@ -133,8 +133,8 @@ import { WebsiteJsonLd } from '@/components/site/JsonLd';
 import { getCategories, getPosts } from '@/lib/data';
 import { SITE_CONFIG } from '@/lib/site';
 import { SearchX } from 'lucide-react';
-import { Footer } from '@/components/site/Footer';
-import { Header } from '@/components/site/Header';
+// import { Footer } from '@/components/site/Footer';
+// import { Header } from '@/components/site/Header';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -195,7 +195,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   return (
     <>
       <WebsiteJsonLd />
-      <Header categories={categories} posts={allPosts} />
+      {/* <Header categories={categories} posts={allPosts} /> */}
 
       <main className="flex-1">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
@@ -263,7 +263,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         </div>
       </main>
 
-      <Footer categories={categories} />
+      {/* <Footer categories={categories} /> */}
     </>
   );
 }

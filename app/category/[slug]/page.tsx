@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { Header } from '@/components/site/Header';
-import { Footer } from '@/components/site/Footer';
+// import { Header } from '@/components/site/Header';
+// import { Footer } from '@/components/site/Footer';
 import { BlogCard } from '@/components/site/BlogCard';
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { BreadcrumbJsonLd } from '@/components/site/JsonLd';
@@ -77,7 +77,7 @@ export default async function CategoryPage({ params }: PageProps) {
   return (
     <>
       <BreadcrumbJsonLd items={breadcrumbItems} />
-      <Header categories={categories} posts={allPosts} />
+      {/* <Header categories={categories} posts={allPosts} /> */}
 
       <main className="flex-1">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
@@ -121,7 +121,7 @@ export default async function CategoryPage({ params }: PageProps) {
         </div>
       </main>
 
-      <Footer categories={categories} />
+      {/* <Footer categories={categories} /> */}
     </>
   );
 }

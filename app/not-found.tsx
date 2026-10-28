@@ -1,7 +1,7 @@
 //app/not-found.tsx
 import Link from 'next/link';
-import { Header } from '@/components/site/Header';
-import { Footer } from '@/components/site/Footer';
+// import { Header } from '@/components/site/Header';
+// import { Footer } from '@/components/site/Footer';
 import { getCategories, getPosts } from '@/lib/data';
 import { Compass } from 'lucide-react';
 
@@ -10,7 +10,7 @@ export default async function NotFound() {
 
   return (
     <>
-      <Header categories={categories} posts={posts} />
+      {/* <Header categories={categories} posts={posts} /> */}
       <main className="flex-1 flex items-center justify-center min-h-[60vh]">
         <div className="container mx-auto max-w-2xl px-4 text-center py-20">
           <div className="flex justify-center mb-6">
@@ -30,7 +30,7 @@ export default async function NotFound() {
           </Link>
         </div>
       </main>
-      <Footer categories={categories} />
+      {/* <Footer categories={categories} /> */}
     </>
   );
 }
