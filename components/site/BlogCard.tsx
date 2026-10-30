@@ -69,9 +69,9 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
                 <Image
                   src={post.author_avatar}
                   alt={post.author_name}
-                  width={28}
-                  height={28}
-                  className="rounded-full"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 rounded-full object-cover"
                 />
               )}
               <span className="text-xs font-medium text-muted-foreground">

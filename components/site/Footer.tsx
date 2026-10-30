@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { Mail, Phone } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/site';
 import type { Category } from '@/lib/types';
+import { FooterCategories } from './FooterCategories';
 
 interface FooterProps {
   categories: Category[];
@@ -9,6 +10,20 @@ interface FooterProps {
 
 export function Footer({ categories }: FooterProps) {
   const year = new Date().getFullYear();
+
+  // Facebook icon component
+function FacebookIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+    >
+      <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+    </svg>
+  );
+}
 
   return (
     <footer className="border-t border-border/60 bg-secondary/30 mt-auto">
@@ -35,21 +50,7 @@ export function Footer({ categories }: FooterProps) {
 
           {/* Categories */}
           <div>
-            <h3 className="font-heading text-sm font-semibold mb-4 uppercase tracking-wider text-muted-foreground">
-              Categories
-            </h3>
-            <ul className="space-y-2.5">
-              {categories.map((cat) => (
-                <li key={cat.slug}>
-                  <Link
-                    href={`/category/${cat.slug}`}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {cat.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <FooterCategories categories={categories} />
           </div>
 
           {/* Site links */}
@@ -96,22 +97,22 @@ export function Footer({ categories }: FooterProps) {
             </p>
             <div className="space-y-3">
               <a
-                href="mailto:khaladict@gmail.com"
+                href="mailto:gainlancebd@gmail.com"
                 className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border">
                   <Mail className="h-4 w-4" />
                 </div>
-                <span>khaladict@gmail.com</span>
+                <span>gainlancebd@gmail.com</span>
               </a>
               <a
-                href="tel:+8801817867767"
+                href="https://www.facebook.com/KhaladunNabi"
                 className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border">
-                  <Phone className="h-4 w-4" />
+                  <FacebookIcon className="h-4 w-4" />
                 </div>
-                <span>+880 1817-867767</span>
+                <span>Facebook Page</span>
               </a>
             </div>
           </div>
