@@ -1,24 +1,17 @@
-//blog/[slug]/page.tsx
+// app/blog/[slug]/page.tsx
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Clock, Calendar, ArrowLeft, Tag } from 'lucide-react';
-// import { Header } from '@/components/site/Header';
-// import { Footer } from '@/components/site/Footer';
 import { Breadcrumbs } from '@/components/site/Breadcrumbs';
 import { ArticleContent } from '@/components/site/ArticleContent';
 import { ProductReview } from '@/components/site/ProductReview';
 import { ShareButton } from '@/components/site/ShareButton';
 import { StarRating } from '@/components/site/StarRating';
 import { BlogCard } from '@/components/site/BlogCard';
+import { ReviewJsonLd, BreadcrumbJsonLd } from '@/components/site/JsonLd';
 import {
-  ReviewJsonLd,
-  BreadcrumbJsonLd,
-} from '@/components/site/JsonLd';
-import {
-  getCategories,
-  getPosts,
   getPostBySlug,
   getRelatedPosts,
   getAllPostSlugs,
@@ -26,12 +19,11 @@ import {
 import { SITE_CONFIG, formatDate } from '@/lib/site';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
-
-export const revalidate = 60;
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();
@@ -82,15 +74,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const [categories, posts, post] = await Promise.all([
-    getCategories(),
-    getPosts(),
-    getPostBySlug((await params).slug),
-  ]);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) notFound();
 
   const relatedPosts = await getRelatedPosts(post, 3);
+  const rating = post.rating ?? 0;
 
   const breadcrumbItems = [
     { name: 'Home', url: SITE_CONFIG.url },
@@ -103,11 +93,9 @@ export default async function BlogPostPage({ params }: PageProps) {
     <>
       <ReviewJsonLd post={post} />
       <BreadcrumbJsonLd items={breadcrumbItems} />
-      {/* <Header categories={categories} posts={posts} /> */}
-
       <main className="flex-1">
-        {/* Hero */}
         <article>
+          {/* Breadcrumbs */}
           <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-8">
             <Breadcrumbs
               items={[
@@ -119,6 +107,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             />
           </div>
 
+          {/* Header */}
           <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-6">
             <Link
               href={`/category/${post.category.slug}`}
@@ -161,10 +150,10 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
               </div>
 
-              {post.rating > 0 && (
+              {rating > 0 && (
                 <div className="flex items-center gap-2">
-                  <StarRating rating={post.rating} size={18} />
-                  <span className="text-sm font-bold">{post.rating.toFixed(1)}</span>
+                  <StarRating rating={rating} size={18} />
+                  <span className="text-sm font-bold">{rating.toFixed(1)}</span>
                 </div>
               )}
             </div>
@@ -218,7 +207,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
             )}
 
-            {/* Back link */}
+            {/* Back link & share */}
             <div className="mt-8 flex items-center justify-between">
               <Link
                 href="/blog"
@@ -246,8 +235,6 @@ export default async function BlogPostPage({ params }: PageProps) {
           </section>
         )}
       </main>
-
-      {/* <Footer categories={categories} /> */}
     </>
   );
 }
