@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import { ArrowRight, TrendingUp, ShieldCheck, ThumbsUp } from 'lucide-react';
-// import { Header } from '@/components/site/Header';
-// import { Footer } from '@/components/site/Footer';
 import { BlogCard } from '@/components/site/BlogCard';
 import { CategoryCard } from '@/components/site/CategoryCard';
 import { HeroCarousel } from '@/components/site/HeroCarousel';
@@ -33,8 +31,6 @@ export default async function HomePage() {
     <>
       <OrganizationJsonLd />
       <WebsiteJsonLd />
-      {/* <Header categories={categories} posts={recentPosts} /> */}
-
       <main className="flex-1">
         {/* Hero */}
         <section className="relative overflow-hidden border-b border-border">
@@ -91,26 +87,6 @@ export default async function HomePage() {
         {/* Top-Rated Products */}
         <TopRatedSection posts={topRatedPosts} />
 
-        {/* Categories */}
-        <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <h2 className="font-heading text-2xl lg:text-3xl font-bold tracking-tight mb-2">
-                Browse by Category
-              </h2>
-              <p className="text-muted-foreground">
-                Find the perfect product review for your needs
-              </p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {categories.map((cat) => {
-              const count = postCountByCategory.find((c) => c.categoryId === cat.id)?.count || 0;
-              return <CategoryCard key={cat.id} category={cat} postCount={count} />;
-            })}
-          </div>
-        </section>
-
         {/* Latest Reviews */}
         <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
           <div className="flex items-end justify-between mb-8">
@@ -141,7 +117,7 @@ export default async function HomePage() {
           <div className="rounded-2xl border border-border bg-gradient-to-r from-primary/5 to-accent/5 p-8 lg:p-12">
             <div className="grid sm:grid-cols-3 gap-8 text-center">
               <div>
-                <p className="font-heading text-3xl font-bold text-primary">33+</p>
+                <p className="font-heading text-3xl font-bold text-primary">47+</p>
                 <p className="text-sm text-muted-foreground mt-1">Products Tested</p>
               </div>
               <div>
@@ -155,9 +131,27 @@ export default async function HomePage() {
             </div>
           </div>
         </section>
-      </main>
 
-      {/* <Footer categories={categories} /> */}
+        {/* Categories */}
+        <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <h2 className="font-heading text-2xl lg:text-3xl font-bold tracking-tight mb-2">
+                Browse by Category
+              </h2>
+              <p className="text-muted-foreground">
+                Find the perfect product review for your needs
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {categories.map((cat) => {
+              const count = postCountByCategory.find((c) => c.categoryId === cat.id)?.count || 0;
+              return <CategoryCard key={cat.id} category={cat} postCount={count} />;
+            })}
+          </div>
+        </section>
+      </main>
     </>
   );
 }

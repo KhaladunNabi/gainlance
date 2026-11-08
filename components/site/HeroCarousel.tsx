@@ -30,7 +30,7 @@ export function HeroCarousel({ posts }: { posts: PostWithCategory[] }) {
             <CarouselItem key={post.id} className="pl-3 basis-full">
               <Link
                 href={`/blog/${post.slug}`}
-                className="group relative block overflow-hidden rounded-2xl h-[60vh] min-h-[400px]"
+                className="group relative block overflow-hidden rounded-2xl h-[50%] min-h-[400px]"
               >
                 <Image
                   src={post.featured_image}
