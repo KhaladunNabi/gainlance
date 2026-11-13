@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
     'GainLance tests and compares essential home office desk equipment so you can confidently purchase the right setup or product.',
   icon: process.env.NEXT_PUBLIC_SITE_ICON || '/gainlance-icon.png',
   twitter: process.env.NEXT_PUBLIC_TWITTER_HANDLE || '@khaladunnabi',
-  author: process.env.NEXT_PUBLIC_SITE_AUTHOR || 'Md Khaladunnabi',
+  author: process.env.NEXT_PUBLIC_SITE_AUTHOR || 'Md Khaladunnabi and GainLance Team',
   amazon: {
     affiliateTag: process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG || 'gainlance-20',
   },

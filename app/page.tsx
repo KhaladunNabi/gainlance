@@ -7,6 +7,7 @@ import { TopRatedSection } from '@/components/site/TopRatedSection';
 import { OrganizationJsonLd, WebsiteJsonLd } from '@/components/site/JsonLd';
 import { getCategories, getFeaturedPosts, getPosts, getTopRatedPosts } from '@/lib/data';
 import { SITE_CONFIG } from '@/lib/site';
+import NewsletterSection from '@/components/site/NewsLetter';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -19,7 +20,7 @@ export default async function HomePage() {
     getTopRatedPosts(4),
   ]);
 
-  const recentPosts = allPosts.slice(0, 6);
+  const recentPosts = allPosts.slice(0, 15);
   const carouselPosts = featuredPosts.slice(0, 5);
 
   const postCountByCategory = categories.map((cat) => ({
@@ -89,21 +90,21 @@ export default async function HomePage() {
 
         {/* Latest Reviews */}
         <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <h2 className="font-heading text-2xl lg:text-3xl font-bold tracking-tight mb-2">
-                Latest Reviews
-              </h2>
-              <p className="text-muted-foreground">
-                Fresh from our testing lab
-              </p>
-            </div>
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:gap-2 transition-all"
-            >
-              View All <ArrowRight className="h-4 w-4" />
-            </Link>
+          <div className="flex items-end justify-between gap-4 mb-8">
+          <div className="max-w-2xl">
+          <h2 className="font-heading text-2xl lg:text-3xl font-bold tracking-tight mb-2">
+          Latest Reviews
+          </h2>
+          <p className="text-muted-foreground">
+             Gain insights from our most recent product reviews and recommendations. We test products across various categories to help you make informed decisions.
+          </p>
+        </div>
+        <Link
+        href="/blog"
+        className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-primary hover:gap-2 transition-all"
+        >
+          View All <ArrowRight className="h-4 w-4" />
+         </Link>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {recentPosts.map((post) => (
@@ -111,6 +112,34 @@ export default async function HomePage() {
             ))}
           </div>
         </section>
+
+        {/* Explore More Reviews
+        <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <div className="max-w-2xl">
+              <h2 className="font-heading text-2xl lg:text-3xl font-bold tracking-tight mb-2">
+                Explore More Reviews
+              </h2>
+              <p className="text-muted-foreground">
+                Dive deeper into our extensive library of product reviews. From tech gadgets to home essentials, we cover a wide range of products to help you make informed choices.
+              </p>
+            </div>
+            <Link
+              href="/blog"
+              className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-primary hover:gap-2 transition-all"
+            >
+              View All <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allPosts.slice(15, 30).map((post) => (
+              <BlogCard key={post.id} post={post} />
+            ))}
+          </div>
+        </section> */}
+
+        {/* Subscribe section */}
+        <NewsletterSection />
 
         {/* Trust banner */}
         <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">

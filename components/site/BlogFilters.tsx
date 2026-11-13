@@ -42,7 +42,7 @@ export function BlogFilters() {
       if (value) params.set(key, value);
       else params.delete(key);
     });
-    params.delete('page'); // ফিল্টার বদলালে ১ম পেজে ফিরবে
+    params.delete('page'); 
     const qs = params.toString();
     router.push(qs ? `${pathname}?${qs}` : pathname);
   };
