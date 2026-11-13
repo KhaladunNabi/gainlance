@@ -13,6 +13,7 @@ import {
 } from '@/lib/data';
 import { SITE_CONFIG } from '@/lib/site';
 import { TrackRecentCategory } from '@/components/site/TrackRecentCategory';
+import NewsletterSection from '@/components/site/NewsLetter';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
@@ -167,6 +168,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
           )}
         </div>
       </main>
+      <NewsletterSection />
     </>
   );
 }
