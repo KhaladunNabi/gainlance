@@ -11,7 +11,7 @@ import { SearchX } from 'lucide-react';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-const POSTS_PER_PAGE = 21;
+const POSTS_PER_PAGE = 12;
 
 export const metadata: Metadata = {
   title: 'All Product Reviews',

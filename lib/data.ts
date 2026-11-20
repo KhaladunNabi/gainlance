@@ -139,3 +139,22 @@ export async function getAllCategorySlugs(): Promise<string[]> {
   if (error || !data) return [];
   return data.map((c) => c.slug as string);
 }
+
+export async function getPostCountByCategory(): Promise<
+  { categoryId: string; count: number }[]
+> {
+  const { data, error } = await supabase
+    .from('posts')
+    .select('category_id')
+    .eq('status', 'published');
+
+  if (error || !data) return [];
+
+  const map = new Map<string, number>();
+  for (const row of data) {
+    if (!row.category_id) continue;
+    map.set(row.category_id, (map.get(row.category_id) ?? 0) + 1);
+  }
+
+  return Array.from(map, ([categoryId, count]) => ({ categoryId, count }));
+}

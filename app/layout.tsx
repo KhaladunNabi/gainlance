@@ -2,12 +2,12 @@ import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 import { SITE_CONFIG } from '@/lib/site';
-import { getCategories, getPosts } from '@/lib/data';
+import { getCategories, getPosts, getPostCountByCategory } from '@/lib/data';
 import { Header } from '@/components/site/Header';
 // import { CategoryNav } from '@/components/site/CategoryNav';
 import { Footer } from '@/components/site/Footer';
 
-// সব পেজে মেনু/Footer সবসময় সর্বশেষ ডেটা দেখাবে
+// all pages are dynamic because of the search functionality, but we can still cache the layout for performance
 export const dynamic = 'force-dynamic';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
@@ -84,15 +84,20 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [categories, allPosts] = await Promise.all([
+  const [categories, allPosts, postCountByCategory] = await Promise.all([
     getCategories(),
     getPosts(),
+    getPostCountByCategory(),
   ]);
 
   return (
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
       <body className="font-sans antialiased min-h-screen flex flex-col">
-        <Header categories={categories} posts={allPosts} />
+        <Header
+          categories={categories}
+          posts={allPosts}
+          postCountByCategory={postCountByCategory}
+        />
         {/* <CategoryNav categories={categories} /> */}
         {children}
         <Footer categories={categories} />

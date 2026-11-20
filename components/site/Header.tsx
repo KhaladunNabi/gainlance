@@ -1,23 +1,59 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useRef } from 'react';
+import Image from 'next/image';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Menu, X, ChevronDown, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LiveSearch, type SearchPost } from '@/components/site/LiveSearch';
 import { cn } from '@/lib/utils';
 import type { Category } from '@/lib/types';
 
+interface PostCount {
+  categoryId: string;
+  count: number;
+}
+
 interface HeaderProps {
   categories: Category[];
   posts: SearchPost[];
+  postCountByCategory?: PostCount[];
 }
 
-export function Header({ categories, posts }: HeaderProps) {
+const navLinkClass =
+  'px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md';
+
+const mobileLinkClass =
+  'px-3 py-2.5 text-sm font-medium hover:bg-secondary rounded-md transition-colors';
+
+function CountBadge({ count }: { count: number }) {
+  return (
+    <span className="flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-primary/80 px-1.5 text-[11px] font-semibold leading-none text-white">
+      {count}
+    </span>
+  );
+}
+
+export function Header({
+  categories,
+  posts,
+  postCountByCategory = [],
+}: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const countMap = useMemo(
+    () => new Map(postCountByCategory.map((c) => [c.categoryId, c.count])),
+    [postCountByCategory]
+  );
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   const openMega = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -25,10 +61,11 @@ export function Header({ categories, posts }: HeaderProps) {
   };
 
   const closeMega = () => {
-    timeoutRef.current = setTimeout(() => {
-      setMegaOpen(false);
-    }, 150);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => setMegaOpen(false), 150);
   };
+
+  const closeMobileMenu = () => setMobileOpen(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
@@ -36,7 +73,7 @@ export function Header({ categories, posts }: HeaderProps) {
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex shrink-0 items-center gap-2">
-            <img
+            <Image
               src="/favicon.ico"
               alt="GainLance logo"
               width={40}
@@ -49,41 +86,47 @@ export function Header({ categories, posts }: HeaderProps) {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            <Link
-              href="/"
-              className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md"
-            >
+          <nav className="hidden items-center gap-1 lg:flex">
+            <Link href="/" className={navLinkClass}>
               Home
             </Link>
-            <Link
-              href="/blog"
-              className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md"
-            >
+            <Link href="/blog" className={navLinkClass}>
               All Reviews
             </Link>
 
             {/* Mega menu (Categories) */}
             {categories.length > 0 && (
-              <div className="relative" onMouseEnter={openMega} onMouseLeave={closeMega}>
+              <div
+                className="relative"
+                onMouseEnter={openMega}
+                onMouseLeave={closeMega}
+              >
                 <button
+                  type="button"
+                  aria-expanded={megaOpen}
+                  aria-haspopup="true"
                   className={cn(
-                    'flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors',
-                    megaOpen ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
+                    'flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                    megaOpen
+                      ? 'text-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
                   )}
                 >
                   Categories
                   <ChevronDown
-                    className={cn('h-4 w-4 transition-transform duration-200', megaOpen && 'rotate-180')}
+                    className={cn(
+                      'h-4 w-4 transition-transform duration-200',
+                      megaOpen && 'rotate-180'
+                    )}
                   />
                 </button>
 
                 <div
                   className={cn(
-                    'absolute left-1/2 -translate-x-1/2 top-full z-50 mt-1 w-[1024px] max-w-[calc(100vw-2rem)] rounded border bg-popover p-6 shadow-xl transition-all duration-200 origin-top',
+                    'absolute left-1/2 top-full z-50 mt-1 w-[1024px] max-w-[calc(100vw-2rem)] origin-top -translate-x-1/2 rounded border bg-popover p-6 shadow-xl transition-all duration-200',
                     megaOpen
-                      ? 'opacity-100 scale-100 visible pointer-events-auto'
-                      : 'opacity-0 scale-95 invisible pointer-events-none'
+                      ? 'pointer-events-auto visible scale-100 opacity-100'
+                      : 'pointer-events-none invisible scale-95 opacity-0'
                   )}
                   onMouseEnter={openMega}
                   onMouseLeave={closeMega}
@@ -95,22 +138,28 @@ export function Header({ categories, posts }: HeaderProps) {
                   </div>
 
                   <div className="grid grid-cols-4 gap-2">
-                    {categories.map((cat) => (
-                      <Link
-                        key={cat.slug}
-                        href={`/category/${cat.slug}`}
-                        className="flex items-center gap-2 rounded px-3 py-2.5 text-sm font-medium text-foreground hover:bg-orange-200 transition-colors"
-                      >
-                        <span className="h-1.5 w-1.5 rounded-full bg-primary/80 shrink-0" />
-                        {cat.name}
-                      </Link>
-                    ))}
+                    {categories.map((cat) => {
+                      const count = countMap.get(cat.id) ?? 0;
+
+                      return (
+                        <Link
+                          key={cat.slug}
+                          href={`/category/${cat.slug}`}
+                          className="flex items-center gap-2 rounded px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-foreground/5"
+                          onClick={() => setMegaOpen(false)}
+                        >
+                          <CountBadge count={count} />
+                          {cat.name}
+                        </Link>
+                      );
+                    })}
                   </div>
 
                   <div className="mt-4 border-t pt-4">
                     <Link
                       href="/blog"
-                      className="flex items-center justify-between rounded px-3 py-2 text-sm font-medium text-primary hover:bg-orange-200 transition-colors"
+                      className="flex items-center justify-between rounded px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-foreground/5"
+                      onClick={() => setMegaOpen(false)}
                     >
                       View all reviews
                       <span className="text-xs">→</span>
@@ -119,12 +168,10 @@ export function Header({ categories, posts }: HeaderProps) {
                 </div>
               </div>
             )}
-              <Link
-              href="/about"
-              className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md"
-              >
+
+            <Link href="/about" className={navLinkClass}>
               About
-              </Link>
+            </Link>
           </nav>
 
           {/* Right side */}
@@ -143,7 +190,11 @@ export function Header({ categories, posts }: HeaderProps) {
               }}
               aria-label="Toggle search"
             >
-              {mobileSearchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
+              {mobileSearchOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Search className="h-5 w-5" />
+              )}
             </Button>
 
             <Button
@@ -176,38 +227,41 @@ export function Header({ categories, posts }: HeaderProps) {
         {/* Mobile Menu */}
         <div
           className={cn(
-            'lg:hidden overflow-hidden transition-all duration-300 ease-in-out',
-            mobileOpen ? 'max-h-[400px] pb-4' : 'max-h-0'
+            'overflow-hidden transition-all duration-300 ease-in-out lg:hidden',
+            mobileOpen ? 'max-h-[70vh] overflow-y-auto pb-4' : 'max-h-0'
           )}
         >
           <nav className="flex flex-col gap-1 pt-2">
-            <Link
-              href="/"
-              className="px-3 py-2.5 text-sm font-medium hover:bg-secondary rounded-md transition-colors"
-              onClick={() => setMobileOpen(false)}
-            >
+            <Link href="/" className={mobileLinkClass} onClick={closeMobileMenu}>
               Home
             </Link>
-            <Link
-              href="/blog"
-              className="px-3 py-2.5 text-sm font-medium hover:bg-secondary rounded-md transition-colors"
-              onClick={() => setMobileOpen(false)}
-            >
+            <Link href="/blog" className={mobileLinkClass} onClick={closeMobileMenu}>
               All Reviews
             </Link>
+            <Link href="/about" className={mobileLinkClass} onClick={closeMobileMenu}>
+              About
+            </Link>
+
             <div className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground/60">
               Categories
             </div>
-            {categories.map((cat) => (
-              <Link
-                key={cat.slug}
-                href={`/category/${cat.slug}`}
-                className="px-3 py-2.5 text-sm font-medium hover:bg-secondary rounded-md transition-colors pl-6"
-                onClick={() => setMobileOpen(false)}
-              >
-                {cat.name}
-              </Link>
-            ))}
+            {categories.map((cat) => {
+              const count = countMap.get(cat.id) ?? 0;
+
+              return (
+                <div className="grid grid-cols-2" key={cat.slug}>
+                <Link
+                  key={cat.slug}
+                  href={`/category/${cat.slug}`}
+                  className={cn(mobileLinkClass, 'flex items-center gap-2 pl-6')}
+                  onClick={closeMobileMenu}
+                >
+                  <CountBadge count={count} />
+                  {cat.name}
+                </Link>
+                </div>
+              );
+            })}
           </nav>
         </div>
       </div>
