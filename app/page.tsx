@@ -44,8 +44,8 @@ export default async function HomePage() {
                   Trusted by 1000+ readers
                 </span>
                 <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance mb-6">
-                  We Test Tech So{' '}
-                  <span className="text-primary">You Don&apos;t Have To</span>
+                  Compare Home Office Gear{' '}
+                  <span className="text-primary">With Confidence</span>
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl">
                   {SITE_CONFIG.description} 
@@ -62,7 +62,7 @@ export default async function HomePage() {
                     href="/about"
                     className="inline-flex items-center gap-2 rounded-lg border border-border px-6 py-3 text-sm font-semibold text-foreground transition-all hover:bg-secondary active:scale-[0.98]"
                   >
-                    How We Test
+                    Researched comparisons
                   </Link>
                 </div>
 
@@ -84,9 +84,6 @@ export default async function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* Top-Rated Products */}
-        <TopRatedSection posts={topRatedPosts} />
 
         {/* Latest Reviews */}
         <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
@@ -138,6 +135,9 @@ export default async function HomePage() {
           </div>
         </section> */}
 
+        {/* Top-Rated Products */}
+        <TopRatedSection posts={topRatedPosts} />
+
         {/* Subscribe section */}
         <NewsletterSection />
 
@@ -147,7 +147,7 @@ export default async function HomePage() {
             <div className="grid sm:grid-cols-3 gap-8 text-center">
               <div>
                 <p className="font-heading text-3xl font-bold text-primary">60+</p>
-                <p className="text-sm text-muted-foreground mt-1">Products Tested</p>
+                <p className="text-sm text-muted-foreground mt-1">Products Reviewed</p>
               </div>
               <div>
                 <p className="font-heading text-3xl font-bold text-primary">1K+</p>
