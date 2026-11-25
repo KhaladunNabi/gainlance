@@ -2,9 +2,9 @@
 export const SITE_CONFIG = {
   name: process.env.NEXT_PUBLIC_SITE_NAME ?? 'GainLance',
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://gainlance.com').replace(/\/$/, ''),
-  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Testing and comparative reviews of essential home and office desk equipment.',
+  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'GainLance helps you choose the right home office gear.',
   description:
-    'GainLance tests and compares essential home office desk equipment so you can confidently purchase the right setup or product.',
+    'GainLance helps you choose the right home office gear. We compare specs, verified buyer feedback and real-world ratings for monitors, chairs, standing desks, lamps and desk accessories, so you can pick with confidence.',
   icon: process.env.NEXT_PUBLIC_SITE_ICON || '/gainlance-icon.png',
   twitter: process.env.NEXT_PUBLIC_TWITTER_HANDLE || '@khaladunnabi',
   author: process.env.NEXT_PUBLIC_SITE_AUTHOR || 'Md Khaladunnabi and GainLance Team',

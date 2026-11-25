@@ -48,7 +48,7 @@ export default async function HomePage() {
                   <span className="text-primary">You Don&apos;t Have To</span>
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl">
-                  {SITE_CONFIG.description} Our reviews are based on hands-on use, not spec sheets. 
+                  {SITE_CONFIG.description} 
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Link
@@ -146,7 +146,7 @@ export default async function HomePage() {
           <div className="rounded-2xl border border-border bg-gradient-to-r from-primary/5 to-accent/5 p-8 lg:p-12">
             <div className="grid sm:grid-cols-3 gap-8 text-center">
               <div>
-                <p className="font-heading text-3xl font-bold text-primary">47+</p>
+                <p className="font-heading text-3xl font-bold text-primary">60+</p>
                 <p className="text-sm text-muted-foreground mt-1">Products Tested</p>
               </div>
               <div>

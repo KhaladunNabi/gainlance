@@ -28,7 +28,7 @@ const mobileLinkClass =
 
 function CountBadge({ count }: { count: number }) {
   return (
-    <span className="flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-primary/80 px-1.5 text-[11px] font-semibold leading-none text-white">
+    <span className="flex h-8 min-w-8 shrink-0 items-center justify-center rounded-sm bg-orange-400 px-1.5 text-[12px] font-semibold leading-none text-white">
       {count}
     </span>
   );
